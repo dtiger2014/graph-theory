@@ -6,11 +6,13 @@ import (
 )
 
 func main() {
-	adjMatrix := new(graph.AdjMatrix)
-
-	err := adjMatrix.Init("files/g.txt")
+	var err error
+	
+	// graph
+	g := new(graph.Graph)
+	err = g.Init("files/g.txt")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(adjMatrix)
+	fmt.Println(g)
 }
