@@ -142,7 +142,7 @@ func (adj *Graph) String() string {
 	// 其他行
 	for v := 0; v < adj.v; v++ {
 		res += fmt.Sprintf("%d : ", v)
-		for w, _ := range adj.adj[v] {
+		for w := range adj.adj[v] {
 			res += fmt.Sprintf("%d ", w)
 		}
 		res += "\n"

@@ -15,4 +15,12 @@ func main() {
 		panic(err)
 	}
 	fmt.Println(g)
+
+	// graphDFS
+	gdfs := new(graph.GraphDFS)
+	err = gdfs.Init(g)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(gdfs)
 }
