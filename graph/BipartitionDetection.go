@@ -8,6 +8,7 @@ type BipartitionDetection struct {
 	isBipartite bool
 }
 
+// Init 初始化
 func (bd *BipartitionDetection) Init(g *Graph) error {
 	bd.g = g
 	bd.visited = make([]bool, bd.g.V())
@@ -29,5 +30,27 @@ func (bd *BipartitionDetection) Init(g *Graph) error {
 }
 
 func (bd *BipartitionDetection) dfs (v, color int) bool {
-	bd.
+	bd.visited[v] = true
+	bd.colors[v] = color
+	
+	vertexs, err := bd.g.Adj(v)
+	if err != nil {
+		return false
+	}
+	for vertex := range vertexs {
+		if bd.visited[vertex] == false {
+			if bd.dfs(vertex, 1 - color) == false {
+				bd.isBipartite = false
+				break
+			}
+		} else if bd.colors[vertex] == bd.colors[v] {
+			return false
+		}
+	}
+	return true
+}
+
+// IsBipartite 判断是否二分图
+func (bd *BipartitionDetection) IsBipartite() bool {
+	return bd.isBipartite
 }

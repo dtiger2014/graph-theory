@@ -61,7 +61,18 @@ func main() {
 	err = cd.Init(g2)
 	checkErr(err)
 	fmt.Println(cd.HasCycle())
-	
+
+	// graph 3
+	g3 := new(graph.Graph)
+	err = g3.Init("files/g3.txt")
+	checkErr(err)
+	fmt.Println(g3)
+
+	// BipartitionDetection
+	bd := new(graph.BipartitionDetection)
+	err = bd.Init(g3)
+	checkErr(err)
+	fmt.Println(bd.IsBipartite())
 }
 
 func checkErr(err error) {
