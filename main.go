@@ -3,9 +3,29 @@ package main
 import (
 	"fmt"
 	"graph-theory/graph"
+	"graph-theory/graphbfs"
 )
 
 func main() {
+	test_bfs()
+}
+
+func test_bfs() {
+	var err error
+
+	// graph bfs
+	g := new(graph.Graph)
+	err = g.Init("files/g.txt")
+	checkErr(err)
+	fmt.Println(g)
+
+	gbfs := new(graphbfs.GraphBFS)
+	err = gbfs.Init(g)
+	checkErr(err)
+	fmt.Println(gbfs.Order())
+}
+
+func test_dfs() {
 	var err error
 
 	// graph
