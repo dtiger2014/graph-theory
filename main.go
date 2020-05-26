@@ -23,6 +23,64 @@ func test_bfs() {
 	err = gbfs.Init(g)
 	checkErr(err)
 	fmt.Println(gbfs.Order())
+
+	// Single Source Path
+	fmt.Println("\nSingle Source Path ===")
+	ss := new(graphbfs.SingleSourcePath)
+	err = ss.Init(g, 0)
+	checkErr(err)
+	fmt.Println(ss.IsConnectedTo(6))
+	fmt.Println(ss.Path(6))
+
+	// Path
+	fmt.Println("\nPath ====")
+	path := new(graphbfs.Path)
+	err = path.Init(g, 0, 5)
+	checkErr(err)
+	fmt.Println(path.IsConnected(), path.Path())
+
+	// AllPairsPath
+	fmt.Println("\nAll Pairs Path ====")
+	ap := new(graphbfs.AllPairsPath)
+	err = ap.Init(g)
+	checkErr(err)
+	fmt.Println(ap.IsConntectedTo(0, 4), ap.Path(0, 4))
+	fmt.Println(ap.IsConntectedTo(3, 6), ap.Path(3, 6))
+	fmt.Println(ap.IsConntectedTo(2, 5), ap.Path(2, 5))
+
+	// CC
+	fmt.Println("\nCC ====")
+	cc := new(graphbfs.CC)
+	err = cc.Init(g)
+	checkErr(err)
+	fmt.Println(cc.IsConnected(2, 5), cc.IsConnected(0, 6))
+	fmt.Println(cc.Count())
+	fmt.Println(cc.Components())
+
+	// CycleDetection
+	fmt.Println("\nCycle Detection ====")
+	g2 := new(graph.Graph)
+	err = g2.Init("files/g2.txt")
+	checkErr(err)
+	fmt.Println(g2)
+
+	cd := new(graphbfs.CycleDetection)
+	err = cd.Init(g2)
+	checkErr(err)
+	fmt.Println(cd.HasCycle())
+
+	// graph 3
+	g3 := new(graph.Graph)
+	err = g3.Init("files/g3.txt")
+	checkErr(err)
+	fmt.Println(g3)
+
+	// BipartitionDetection
+	fmt.Println("\nBipartition Detection ====")
+	bd := new(graphbfs.BipartitionDetection)
+	err = bd.Init(g3)
+	checkErr(err)
+	fmt.Println(bd.IsBipartite())
 }
 
 func test_dfs() {

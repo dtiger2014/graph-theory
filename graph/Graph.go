@@ -19,6 +19,11 @@ type Graph struct {
 	adj []map[int]int
 }
 
+func (adj *Graph) ValidateVertex(v int) error {
+	err := adj.validateVertex(v)
+	return err
+}
+
 // validateVertex 验证 顶点合法性
 func (adj *Graph) validateVertex(v int) error {
 	if v < 0 || v >= adj.v {
